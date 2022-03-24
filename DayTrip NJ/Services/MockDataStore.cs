@@ -14,12 +14,16 @@ namespace DayTrip_NJ.Services
         {
             items = new List<Item>()
             {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." }
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Delaware Water Gap", Description="Go hiking, boating, kayaking, rafting, or cycling in the Delaware Water Gap National Recreation Area." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Atlantic City", Description="Gamble at casinos, walk on the Atlantic Boardwalk, and go on carnival rides by the beach." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Cape May", Description="Visit the beach, go skydiving, go birding, or fish by the Cape May Estuary." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Cheesequake State Park", Description="Camp, picnic, bike, and hike through varied ecosystems in this beautiful state park." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "High Point State Park", Description="Hike up to the summit of Kittatinny Ridge and enjoy spectacular views of NJ from its highest peak." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Liberty State Park", Description="Enjoy views of the Statue of Liberty and the Manhattan skyline." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Six Flags Great Adventure", Description = "Feel the thrill of the world's tallest rollercoaster at New Jersey's top theme park." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Grounds for Sculpture", Description = "Walk through the 42 acres of park in awe of hundreds of contemporary sculptures." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Mountain Creek Resort (seasonal)", Description = "Ski through over 167 skiable acres and 1,000 feet of vertical skiing trails during the winter months." },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Branch Brook Park (seasonal)", Description = "Visit Branch Brook Park in early April to see the blooming cherry blossoms that the park is famed for." }
             };
         }
 

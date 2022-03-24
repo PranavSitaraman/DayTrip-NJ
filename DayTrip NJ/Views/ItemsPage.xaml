@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DayTrip_NJ.Views.ItemsPage"
-             Title="{Binding Title}"
+             Title="Day Trips"
              xmlns:local="clr-namespace:DayTrip_NJ.ViewModels"  
              xmlns:model="clr-namespace:DayTrip_NJ.Models"  
              x:Name="BrowseItemsPage">
