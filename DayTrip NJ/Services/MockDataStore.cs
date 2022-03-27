@@ -26,7 +26,7 @@ namespace DayTrip_NJ.Services
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Branch Brook Park (seasonal)", Description = "Visit Branch Brook Park in early April to see the blooming cherry blossoms that the park is famed for." }
             };
         }
-
+        
         public async Task<bool> AddItemAsync(Item item)
         {
             items.Add(item);
