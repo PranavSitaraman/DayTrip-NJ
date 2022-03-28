@@ -1,0 +1,92 @@
+@page "/Login"
+@inject HttpClient HttpClient
+@using Microsoft.AspNetCore.WebUtilities;
+@inject NavigationManager NavigationManager;
+@using Blazored.FluentValidation
+@using System.Net
+@using DayTripNJ.Shared.UserManagement
+@using Microsoft.Extensions.Primitives
+
+<div class="center-align-background">
+    <div class="form-outer" style="width: 40%; min-width: 250px; max-width: 400px">
+        <EditForm Model="@Model" OnValidSubmit="@Submit">
+            <DataAnnotationsValidator/>
+
+            <div class="form-input">
+                <label>Email</label>
+                <div>
+                    <InputText style="width: 100%; box-sizing: border-box" id="email" placeholder="alice-smith@example.com" @bind-Value="Model.Email"/>
+                </div>
+            </div>
+
+            <div class="form-input">
+                <label>Password</label>
+                <div>
+                    <InputText style="width: 100%; box-sizing: border-box" id="password" placeholder="password" @bind-Value="Model.Password"/>
+                </div>
+            </div>
+
+            <div class="form-error">
+                <ValidationSummary/>
+                @if (!String.IsNullOrEmpty(_resultMessage))
+                {
+                    <div class="form-error-message">@_resultMessage</div>
+                }
+            </div>
+
+            <div class="centered-button-group">
+                <button type="submit">Sign In</button>
+            </div>
+
+        </EditForm>
+
+    </div>
+
+</div>
+
+@code {
+
+    private LoginModel Model = new();
+
+    private string _resultMessage;
+    private string _redirectUrl;
+
+
+    protected override void OnInitialized()
+    {
+        var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("redirect", out var redirect))
+        {
+            _redirectUrl = redirect.ToString();
+        }
+            
+        
+    }
+
+    private async void Submit()
+    {
+        HttpResponseMessage response = await HttpClient.PostAsJsonAsync("Account/Login", Model);
+
+        switch (response.StatusCode)
+        {
+            case HttpStatusCode.OK:
+                Console.WriteLine("success");
+                _resultMessage = "Login successful";
+                if (_redirectUrl != null) NavigationManager.NavigateTo(_redirectUrl);
+                break;
+            case HttpStatusCode.NoContent:
+                Console.WriteLine("failure");
+                _resultMessage = "Account with specified email does not exist";
+                break;
+
+            case HttpStatusCode.BadRequest:
+                Console.WriteLine("incorrect");
+                _resultMessage = "Incorrect email or password";
+                break;
+            case HttpStatusCode.InternalServerError:
+                _resultMessage = "An unexpected server error has occured";
+                break;
+        }
+        StateHasChanged();
+    }
+}
