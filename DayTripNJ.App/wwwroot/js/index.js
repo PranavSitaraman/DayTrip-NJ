@@ -156,9 +156,7 @@ function initResources() {
         draw() {
             const divPosition = this.getProjection().fromLatLngToDivPixel(this.position);
             // Hide the popup when it is far out of view.
-            const display = Math.abs(divPosition.x) < 4000 && Math.abs(divPosition.y) < 4000
-                ? "block"
-                : "none";
+            const display = "block";
             if (display === "block") {
                 this.containerDiv.style.left = divPosition.x + "px";
                 this.containerDiv.style.top = divPosition.y + "px";

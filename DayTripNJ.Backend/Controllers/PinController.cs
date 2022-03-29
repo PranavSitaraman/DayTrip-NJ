@@ -132,11 +132,7 @@ namespace DayTripNJ.Backend.Controllers
             double lowerBoundLat = DecimalFloor(lat, 2) - periphery * TILE_SIZE;
             double upperBoundLon = DecimalCeil(lon, 2) + periphery * TILE_SIZE;
             double lowerBoundLon = DecimalFloor(lon, 2) - periphery * TILE_SIZE;
-            List<PinPreview> pins = await _connection.Pins.Where(pin =>
-                pin.Lat >= lowerBoundLat && pin.Lat < upperBoundLat &&
-                pin.Lon >= lowerBoundLon && pin.Lon < upperBoundLon &&
-                pin.Expires > DateTime.UtcNow
-            ).DefaultIfEmpty().ToListAsync();
+            List<PinPreview> pins = await _connection.Pins.Where(pin => pin.Expires > DateTime.UtcNow).DefaultIfEmpty().ToListAsync();
 
             return Json(pins);
         }

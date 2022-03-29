@@ -39,6 +39,11 @@
             </div>
 
         </EditForm>
+        <EditForm Model="@Model" OnValidSubmit="@Registration">
+        <div class="centered-button-group">
+            <button OnClick=Registration>Register</button>
+        </div>
+        </EditForm>
 
     </div>
 
@@ -51,7 +56,6 @@
     private string _resultMessage;
     private string _redirectUrl;
 
-
     protected override void OnInitialized()
     {
         var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
@@ -59,8 +63,8 @@
         {
             _redirectUrl = redirect.ToString();
         }
-            
-        
+
+
     }
 
     private async void Submit()
@@ -72,7 +76,9 @@
             case HttpStatusCode.OK:
                 Console.WriteLine("success");
                 _resultMessage = "Login successful";
-                if (_redirectUrl != null) NavigationManager.NavigateTo(_redirectUrl);
+                StateHasChanged();
+                await Task.Delay(2000);
+                NavigationManager.NavigateTo("/");
                 break;
             case HttpStatusCode.NoContent:
                 Console.WriteLine("failure");
@@ -88,5 +94,9 @@
                 break;
         }
         StateHasChanged();
+    }
+    private void Registration()
+    {
+        NavigationManager.NavigateTo("/Register");
     }
 }
