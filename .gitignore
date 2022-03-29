@@ -364,21 +364,21 @@ FodyWeavers.xsd
 
 
 .idea/
-LocalPin.App/bin/
-LocalPin.App/obj/
-LocalPin.Backend/bin/
-LocalPin.Backend/StaticFiles
-LocalPin.Backend/obj/
-LocalPin.Shared/bin/
-LocalPin.Shared/obj/
-SamuelLihn.UserManagement/bin/
-SamuelLihn.UserManagement/obj/
+DayTripNJ.App/bin/
+DayTripNJ.App/obj/
+DayTripNJ.Backend/bin/
+DayTripNJ.Backend/StaticFiles
+DayTripNJ.Backend/obj/
+DayTripNJ.Shared/bin/
+DayTripNJ.Shared/obj/
+UserManagement/bin/
+UserManagement/obj/
 nginx-1.21.3/logs/*
 *.log
 *.pid
 
 *~
-LocalPin.App/node_modules/
+DayTripNJ.App/node_modules/
 
 
 
