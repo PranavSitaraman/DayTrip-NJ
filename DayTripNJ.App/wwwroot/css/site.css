@@ -203,7 +203,8 @@ button.gm-ui-hover-effect {
 }
 
 .post-view {
-  padding: 10px;
+    text-align: center;
+    padding: 10px;
 }
 .post-view h1 {
   font-size: 1.4em;
@@ -225,10 +226,12 @@ button.gm-ui-hover-effect {
   margin: 0;
 }
 .post-view .image-container {
-  width: 100%;
-  overflow-y: scroll;
-  padding: 10px 5px;
-  box-sizing: border-box;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding: 20px 10px;
+    box-sizing: border-box;
 }
 .post-view .image-container img {
   box-sizing: border-box;

@@ -7,18 +7,20 @@
 @using DayTripNJ.Shared.UserManagement
 @using Microsoft.Extensions.Primitives
 
-<div class="center-align-background">
-    <div class="form-outer" style="width: 40%; min-width: 250px; max-width: 400px">
+<body style="background-color:#71dce1;width:100%;height:100%">
+<div class="center-align-background" style="width:50%; margin-left:auto; margin-right:auto;">
+    <div class="form-outer" style="min-width: 250px; max-width: 500px; margin-left:auto; margin-right:auto">
         <EditForm Model="@Model" OnValidSubmit="@Submit">
             <DataAnnotationsValidator/>
-
+            <img src="/assets/icons/nj.png" style="padding-top:10%; border-radius:10px;display: block;margin-left: auto; margin-right: auto;" width = "50%" height = "auto"/>
+            <br/>
             <div class="form-input">
                 <label>Email</label>
                 <div>
                     <InputText style="width: 100%; box-sizing: border-box" id="email" placeholder="alice-smith@example.com" @bind-Value="Model.Email"/>
                 </div>
             </div>
-
+            <br/>
             <div class="form-input">
                 <label>Password</label>
                 <div>
@@ -33,21 +35,23 @@
                     <div class="form-error-message">@_resultMessage</div>
                 }
             </div>
-
-            <div class="centered-button-group">
+            <br/>
+            <div class="centered-button-group" style="float:left">
                 <button type="submit">Sign In</button>
             </div>
 
         </EditForm>
         <EditForm Model="@Model" OnValidSubmit="@Registration">
-        <div class="centered-button-group">
-            <button OnClick=Registration>Register</button>
-        </div>
-        </EditForm>
+                <div class="centered-button-group" style="float:right">
+                    <button OnClick=Registration>Register</button>
+                </div>
+            </EditForm>
+        
 
     </div>
 
 </div>
+</body>
 
 @code {
 
@@ -78,7 +82,7 @@
                 _resultMessage = "Login successful";
                 StateHasChanged();
                 await Task.Delay(2000);
-                NavigationManager.NavigateTo("/");
+                NavigationManager.NavigateTo("/", forceLoad: true);
                 break;
             case HttpStatusCode.NoContent:
                 Console.WriteLine("failure");

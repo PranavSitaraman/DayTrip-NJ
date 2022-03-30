@@ -1,11 +1,16 @@
 ﻿@using DayTripNJ.Shared.Models
+@using System.Web
 @using System.ComponentModel.DataAnnotations
 @using System.Net.Http.Headers
 @using Blazored.Modal
 @using Blazored.Modal.Services
 @using DayTripNJ.Shared
-@inject HttpClient Http;
+@using DayTripNJ.App.Pages
+@using Microsoft.AspNetCore.SignalR.Client
 
+@inject NavigationManager NavigationManager;
+@inject HttpClient Http;
+@inject IJSRuntime Js;
 
 <EditForm Model="@_model" OnValidSubmit="@SubmitPin">
 
@@ -92,8 +97,10 @@
         _model.Position = DayTripNJ.Shared.Position.FromTuple(Position);
 
         await Http.PostAsJsonAsync("Pin/Create", _model);
+        Console.WriteLine("Pin received");
+        await Js.InvokeVoidAsync("placePin", _model);
         Console.WriteLine($"Posted pin {_model.ToString()}");
         await ModalInstance.CloseAsync(ModalResult.Ok("Submitted Successfully"));
+        NavigationManager.NavigateTo("/", forceLoad: true);
     }
-
 }
