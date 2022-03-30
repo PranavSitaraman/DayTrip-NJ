@@ -15,29 +15,32 @@
 <EditForm Model="@_model" OnValidSubmit="@SubmitPin">
 
     <div>
-        <InputText placeholder="Title..." @bind-Value="@_model.Title"/>
+        <InputText style="font-family:'Courier New';font-weight:bold" placeholder="Title..." @bind-Value="@_model.Title"/>
     </div>
 
     <div>
-        <InputTextArea placeholder="Description..." @bind-Value="@_model.Description"/>
+        <InputTextArea style="font-family:'Courier New';font-weight:bold" placeholder="Description..." @bind-Value="@_model.Description"/>
     </div>
 
     <div>
-        <label>Expires In:</label>
-        <InputSelectEnum @bind-Value="_expiresOptions"/>
+        <label style="font-family:'Courier New';font-weight:bold">Expires In:</label>
+        <InputSelectEnum style="font-family:'Courier New';font-weight:bold" @bind-Value="_expiresOptions"/>
     </div>
     <div>
-        <label>Type:</label>
-        <InputSelectEnum @bind-Value="_model.Kind"/>
+        <label style="font-family:'Courier New';font-weight:bold">Type:</label>
+        <InputSelectEnum style="font-family:'Courier New';font-weight:bold" @bind-Value="_model.Kind"/>
     </div>
-    <div>
-        <label class="file-upload">Upload Image...
-            <InputFile OnChange="@OnFileChanged"/>
+    <br />
+    <div style="border-style:dotted">
+        <label class="file-upload" style="font-family:'Courier New';font-weight:bold">Upload Image Here (optional)...<InputFile OnChange="@OnFileChanged"/>
         </label>
+        <br />
+        <br />
     </div>
-
+    <br />
+    <br />
     <div>
-        <button type="submit">Post</button>
+        <button type="submit" style="font-family:'Courier New';font-weight:bold">Post</button>
     </div>
 </EditForm>
 
