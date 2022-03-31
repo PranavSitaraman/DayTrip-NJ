@@ -15,7 +15,7 @@
             <h1>@Pin.Title</h1>
             <h2>@AuthorName</h2>
             <DateTimeDisplay Date="@Pin.Created"/>
-            <p>@Body.Description</p>
+            <a href="@Body.Description" target="_blank">@Body.Description</a>
             @if (!string.IsNullOrEmpty(Body.Image))
             {
                 <div class="image-container">
