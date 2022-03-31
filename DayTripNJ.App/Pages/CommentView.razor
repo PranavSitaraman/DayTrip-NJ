@@ -7,10 +7,10 @@
 <div class="comment-container">
 @foreach (var c in _comments.Zip(_authors, Tuple.Create))
 {
-    <div class="comment">
-        <h2>@c.Item2</h2>
+    <div class="comment" style="font-family:'Courier New';font-weight:bold">
+        <h2 style="font-family:'Courier New';font-weight:bold">@c.Item2</h2>
         <DateTimeDisplay Date="@c.Item1.Created"/>
-        <p>@c.Item1.Text</p>
+        <p style="font-family:'Courier New';font-weight:bold">@c.Item1.Text</p>
     </div>
 }
     

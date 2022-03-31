@@ -61,7 +61,7 @@
         if (_details != null)
             _details = null;
         StateHasChanged();
-        
+
         _details = id;
         StateHasChanged();
     }
@@ -79,6 +79,7 @@
         _pinHubConnection.On(nameof(IPinClient.ReceivePin), new Func<PinPreview, Task>(ReceivePin));
         await _pinHubConnection.StartAsync();
         Console.WriteLine("Hub connection started");
+
     }
 
     private async Task OnLocationSet(double lat, double lon)

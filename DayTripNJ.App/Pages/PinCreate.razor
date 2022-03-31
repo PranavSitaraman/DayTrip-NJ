@@ -58,18 +58,18 @@
 
     private static Dictionary<ExpiresOptions, TimeSpan> ExpiresTimes = new()
     {
-        [ExpiresOptions.OneHour] = TimeSpan.FromHours(1),
-        [ExpiresOptions.ThreeHours] = TimeSpan.FromHours(3),
-        [ExpiresOptions.TwelveHours] = TimeSpan.FromHours(12),
         [ExpiresOptions.OneDay] = TimeSpan.FromDays(1),
+        [ExpiresOptions.OneWeek] = TimeSpan.FromDays(7),
+        [ExpiresOptions.OneMonth] = TimeSpan.FromDays(31),
+        [ExpiresOptions.OneYear] = TimeSpan.FromDays(365),
     };
 
     enum ExpiresOptions
     {
-        [Display(Name = "1 Hour")] OneHour,
-        [Display(Name = "3 Hours")] ThreeHours,
-        [Display(Name = "12 Hours")] TwelveHours,
-        [Display(Name = "1 Day")] OneDay
+        [Display(Name = "1 Day")] OneDay,
+        [Display(Name = "1 Week")] OneWeek,
+        [Display(Name = "1 Month")] OneMonth,
+        [Display(Name = "1 Year")] OneYear
     }
 
     public async Task OnFileChanged(InputFileChangeEventArgs e)
@@ -99,11 +99,12 @@
         _model.Expires = expires;
         _model.Position = DayTripNJ.Shared.Position.FromTuple(Position);
 
+
         await Http.PostAsJsonAsync("Pin/Create", _model);
         Console.WriteLine("Pin received");
         await Js.InvokeVoidAsync("placePin", _model);
         Console.WriteLine($"Posted pin {_model.ToString()}");
         await ModalInstance.CloseAsync(ModalResult.Ok("Submitted Successfully"));
-        NavigationManager.NavigateTo("/", forceLoad: true);
+        NavigationManager.NavigateTo("/", forceLoad:true);
     }
 }

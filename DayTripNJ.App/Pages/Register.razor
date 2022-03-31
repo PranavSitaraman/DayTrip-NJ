@@ -64,7 +64,7 @@
 
         if (response.StatusCode == HttpStatusCode.OK)
         {
-            NavigationManager.NavigateTo("/Login");
+            NavigationManager.NavigateTo("/Login", forceLoad:true);
         }
     }
 

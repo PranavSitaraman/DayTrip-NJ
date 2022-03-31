@@ -5,8 +5,8 @@
 <EditForm Model="@_model" OnValidSubmit="@SubmitComment">
 
     <div class="comment-sender">
-        <InputText placeholder="Add a comment..." @bind-Value="@_model.Text"/>
-        <button type="submit"><ion-icon name="send"></ion-icon></button>
+        <InputText style="font-family:'Courier New';font-weight:bold" placeholder="Add a comment..." @bind-Value="@_model.Text"/>
+        <button type="submit" style="font-family:'Courier New';font-weight:bold"><ion-icon name="send"></ion-icon></button>
     </div>
 
 </EditForm>
