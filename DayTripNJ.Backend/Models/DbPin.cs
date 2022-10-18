@@ -28,21 +28,23 @@ namespace DayTripNJ.Backend.Models
                 Created = pin.Created
             };
             var image = "";
+            var desc = "";
             try
             {
-                var url1 = "https://api.foursquare.com/v3/places/match?name=" + HttpUtility.UrlPathEncode(pin.Title).ToString() + "&ll=" + pin.Lat.ToString() + "%2C" + pin.Lon.ToString();
+                var apikey = "fsq3iS4rbtf4aBcsbcFtH8MRwn5tlR0cD1d1LS4LgwWAxvQ=";
+                var url1 = "https://api.foursquare.com/v3/places/match?name=" + Uri.EscapeDataString(pin.Title).ToString() + "&ll=" + pin.Lat.ToString() + "%2C" + pin.Lon.ToString();
                 var client1 = new RestClient(url1);
                 var request1 = new RestRequest(Method.GET);
                 request1.AddHeader("accept", "application/json");
-                request1.AddHeader("Authorization", "fsq3jeSvkS841dw+4ZBNRBiN+cAo07yUYUG6IiJoDxR6iKo=");
+                request1.AddHeader("Authorization",apikey);
                 IRestResponse response1 = client1.Execute(request1);
                 var value1 = JObject.Parse(response1.Content);
-                Console.Write(value1["place"]["fsq_id"]);
+                desc = value1["place"]["location"]["formatted_address"].ToString();
                 var url2 = "https://api.foursquare.com/v3/places/" + value1["place"]["fsq_id"].ToString() + "/photos?limit=1";
                 var client2 = new RestClient(url2);
                 var request2 = new RestRequest(Method.GET);
                 request2.AddHeader("accept", "application/json");
-                request2.AddHeader("Authorization", "fsq3jeSvkS841dw+4ZBNRBiN+cAo07yUYUG6IiJoDxR6iKo=");
+                request2.AddHeader("Authorization", apikey);
                 IRestResponse response2 = client2.Execute(request2);
                 JArray jsonArray = JArray.Parse(response2.Content);
                 var value2 = JObject.Parse(jsonArray[0].ToString());
@@ -53,11 +55,12 @@ namespace DayTripNJ.Backend.Models
             {
                 Console.Write(e);
                 image = pin.Image;
+                desc = pin.Description;
             }
             DbPinBody body = new()
             {
                 Id = pin.Id,
-                Description = pin.Description,
+                Description = pin.Description == null ? desc : pin.Description,
                 Image = (pin.Image == null) ? image : pin.Image
             };
             return (preview, body);
